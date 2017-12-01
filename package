@@ -122,7 +122,7 @@ if (is_dir($config_folder) && file_exists(realpath($config_folder).DIRECTORY_SEP
                 if (!empty($template_files_list)) {
                     $template_dst_folder = str_replace('/', DIRECTORY_SEPARATOR, $template_dst_folder);
                     
-                    foreach ($modules as $module) {
+                    foreach ($modules as $module => $object) {
                         echo '* Generating template files for module: '.$module.PHP_EOL;
                         // replace modulename from path
                         $current_module_destination = str_replace('{MODULENAME}', $module, $template_dst_folder);
@@ -139,6 +139,7 @@ if (is_dir($config_folder) && file_exists(realpath($config_folder).DIRECTORY_SEP
                             // modify content
                             $content = file_get_contents($destination_folder . basename($fileRel));
                             $content = str_replace('{MODULENAME}', $module, $content);
+                            $content = str_replace('{OBJECTNAME}', $object, $content);
                             file_put_contents($destination_folder . basename($fileRel), $content);
                         }
                     }
