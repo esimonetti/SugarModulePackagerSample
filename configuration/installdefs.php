@@ -1,0 +1,6 @@
+<?php
+
+/*
+$installdefs[''] = array(
+);
+*/
